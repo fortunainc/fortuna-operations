@@ -106,14 +106,15 @@ export default function ReportBuilder({ project, draw, onSave, onGeneratePDF, on
 
   // Accept suggested risk
   const handleAcceptRisk = (risk: SuggestedRiskFlag) => {
+    const timestamp = Date.now();
     const newRisk: RiskFlag = {
-      id: `risk-${Date.now()}`,
+      id: `risk-${timestamp}`,
       drawId: draw.id,
-      type: risk.type as any,
+      type: risk.type as string,
       description: risk.description,
       severity: risk.severity,
       resolved: false,
-      createdAt: new Date().toISOString(),
+      createdAt: new Date(timestamp).toISOString(),
     };
     draw.riskFlags.push(newRisk);
     setSuggestedRisks(prev => prev.filter(r => r !== risk));

@@ -185,7 +185,7 @@ export interface ReminderHistory {
   sentDate: string;
 }
 
-let reminderHistory: ReminderHistory[] = [];
+const reminderHistory: ReminderHistory[] = [];
 
 export function recordReminderSent(invoiceId: string, reminderType: 'first' | 'second' | 'final') {
   reminderHistory.push({

@@ -33,7 +33,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const stored = localStorage.getItem('fortuna_user');
     if (stored) {
-      setUser(JSON.parse(stored));
+      requestAnimationFrame(() => {
+        setUser(JSON.parse(stored));
+      });
     }
   }, []);
 

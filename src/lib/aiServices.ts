@@ -38,14 +38,15 @@ export interface SummaryOutput {
  * 3-5 sentences max, decision-ready tone, professional lender-facing language
  */
 export function generateAISummary(input: SummaryInput): SummaryOutput {
-  const { observedCompletion, previousCompletion, requestedDraw, riskFlags, siteObservations, documentationComplete, missingDocs } = input;
+  const { observedCompletion, previousCompletion, requestedDraw, riskFlags, documentationComplete, missingDocs } = input;
+  // siteObservations: // TODO: Use site observations to enhance summary
   
   const delta = observedCompletion - previousCompletion;
   const alignmentDelta = Math.abs(observedCompletion - requestedDraw);
   const isAligned = alignmentDelta <= 5;
   const completionRate = observedCompletion > 50 ? 'substantial' : observedCompletion > 25 ? 'moderate' : 'early';
   
-  let sentences: string[] = [];
+  const sentences: string[] = [];
   
   // Sentence 1: Professional assessment of progress and alignment
   if (isAligned) {
@@ -193,7 +194,7 @@ export function detectRisks(input: RiskDetectionInput): SuggestedRiskFlag[] {
   if (budgetPressure) {
     risks.push({
       type: 'budget',
-      description: `Project approaching critical completion phase (${input.observedComplete}%) while draw requests exceed measured progress. This pattern often indicates budget overruns or change order accumulation. Review budget draw-down status and retainage position before funding this draw.`,
+      description: `Project approaching critical completion phase (${input.observedCompletion}%) while draw requests exceed measured progress. This pattern often indicates budget overruns or change order accumulation. Review budget draw-down status and retainage position before funding this draw.`,
       severity: 'medium',
       confidence: 0.82,
     });
@@ -217,7 +218,7 @@ export interface PhotoCaptionOutput {
 }
 
 export function generatePhotoCaption(input: PhotoCaptionInput): PhotoCaptionOutput {
-  const { category, description } = input;
+  const { category } = input;
   
   // Detailed, specific captions based on category and construction phases
   const captions: Record<string, string[]> = {
@@ -469,11 +470,11 @@ export async function callAIService<T>(input: any, serviceType: string): Promise
     case 'riskDetection':
       return detectRisks(input) as T;
     case 'caption':
-      return generatePhotoCaption(input) as T;
+      return generatePhotoCaption(input) as unknown as T;
     case 'invoiceFollowUp':
-      return generateInvoiceFollowUp(input) as T;
+      return generateInvoiceFollowUp(input) as unknown as T;
     case 'dailySummary':
-      return generateDailySummary(input) as T;
+      return generateDailySummary(input) as unknown as T;
     default:
       throw new Error(`Unknown AI service type: ${serviceType}`);
   }
