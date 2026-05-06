@@ -23,6 +23,7 @@ export default function ProjectsPage() {
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [typeFilter, setTypeFilter] = useState<string>('all');
   const [lenderFilter, setLenderFilter] = useState<string>('all');
+  const [showNewProjectModal, setShowNewProjectModal] = useState(false);
 
   // Filter projects
   const filteredProjects = projects.filter(project => {
@@ -49,7 +50,7 @@ export default function ProjectsPage() {
             {filteredProjects.length} projects • {formatCurrency(totalLoanAmount)} total loan value
           </p>
         </div>
-        <Button variant="primary">
+        <Button variant="primary" onClick={() => setShowNewProjectModal(true)}>
           <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
           </svg>
@@ -118,6 +119,35 @@ export default function ProjectsPage() {
           </svg>
           <p className="text-text-muted">No projects found matching your criteria</p>
         </Card>
+      )}
+
+      {/* New Project Modal */}
+      {showNewProjectModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-lg" padding="lg">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xl font-bold text-text-primary">Create New Project</h2>
+              <button
+                onClick={() => setShowNewProjectModal(false)}
+                className="text-text-muted hover:text-text-primary"
+              >
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div className="space-y-4">
+              <p className="text-text-muted text-sm">
+                New project creation is available in the full version. For demonstration purposes, please use the existing sample projects.
+              </p>
+              <div className="flex gap-3">
+                <Button variant="secondary" onClick={() => setShowNewProjectModal(false)}>
+                  Close
+                </Button>
+              </div>
+            </div>
+          </Card>
+        </div>
       )}
     </div>
   );
