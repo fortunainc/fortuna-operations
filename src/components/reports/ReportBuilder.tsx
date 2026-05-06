@@ -499,7 +499,7 @@ export default function ReportBuilder({ project, draw, onSave, onGeneratePDF, on
                 </h4>
                 <div className="space-y-3">
                   {suggestedRisks.map((risk, index) => (
-                    <div key={index} className="p-3 bg-white rounded border border-blue-100">
+                    <div key={index} className="p-3 bg-card rounded border border-border hover:border-primary">
                       <div className="flex items-start justify-between mb-2">
                         <p className="text-sm font-medium text-text-primary capitalize">
                           {risk.type}

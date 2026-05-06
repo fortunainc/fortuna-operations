@@ -66,7 +66,7 @@ export default function CEODailySummary() {
       </div>
 
       {/* One-line summary */}
-      <div className="mb-4 p-3 bg-white rounded-lg border border-blue-100">
+      <div className="mb-4 p-3 bg-card rounded-lg border border-border hover:border-primary">
         <p className="text-sm font-medium text-text-primary">{summary.summary}</p>
       </div>
 

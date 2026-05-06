@@ -52,7 +52,7 @@ function PhotosContent() {
       </div>
 
       {/* Project/Draw Selection */}
-      <div className="bg-white rounded-xl border border-border p-4">
+      <div className="bg-card rounded-xl border border-border p-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-text-primary mb-1">
@@ -138,7 +138,7 @@ function PhotosContent() {
             { label: 'Bathroom', value: photos.filter(p => p.category === 'bathroom').length, icon: '🚿' },
             { label: 'Mechanical', value: photos.filter(p => p.category === 'mechanical').length, icon: '⚙️' },
           ].map(stat => (
-            <div key={stat.label} className="bg-white rounded-lg border border-border p-3 text-center">
+            <div key={stat.label} className="bg-card rounded-lg border border-border p-3 text-center">
               <div className="text-2xl mb-1">{stat.icon}</div>
               <div className="text-xl font-bold text-text-primary">{stat.value}</div>
               <div className="text-xs text-text-muted">{stat.label}</div>

@@ -22,19 +22,19 @@ export default function Button({
   disabled,
   ...props
 }: ButtonProps) {
-  const baseStyles = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed';
+  const baseStyles = 'inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg';
   
   const variants = {
-    primary: 'bg-[#6b8cae] text-white hover:bg-[#8ba4c4] shadow-sm',
-    secondary: 'bg-transparent border border-[#162a47] text-[#ced4da] hover:bg-[#0f1f35] hover:border-[#6b8cae]',
-    danger: 'bg-red-600 text-white hover:bg-red-700',
-    ghost: 'bg-transparent text-[#8ba4c4] hover:bg-[#0f1f35] hover:text-white',
+    primary: 'bg-primary text-white hover:bg-primary-hover shadow-blue-500/20',
+    secondary: 'bg-card border-2 border-border text-text-primary hover:border-primary hover:bg-card-hover',
+    danger: 'bg-danger text-white hover:bg-red-600 shadow-red-500/20',
+    ghost: 'bg-transparent text-text-muted hover:bg-card-hover hover:text-text-primary',
   };
   
   const sizes = {
-    sm: 'px-3 py-1.5 text-sm gap-1.5',
-    md: 'px-4 py-2 text-sm gap-2',
-    lg: 'px-6 py-3 text-base gap-2',
+    sm: 'px-4 py-2 text-sm gap-2 shadow-md',
+    md: 'px-6 py-2.5 text-sm gap-2 shadow-lg',
+    lg: 'px-8 py-3 text-base gap-2 shadow-xl',
   };
 
   return (

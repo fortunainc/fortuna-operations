@@ -141,7 +141,7 @@ export default function PhotoGallery({
                     {photo.tags.slice(0, 2).map(tag => (
                       <span
                         key={tag}
-                        className="text-[9px] bg-white/20 text-white px-1 py-0.5 rounded"
+                        className="text-[9px] bg-card/20 text-text-primary px-1 py-0.5 rounded"
                       >
                         {tag}
                       </span>

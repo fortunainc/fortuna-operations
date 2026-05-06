@@ -274,7 +274,7 @@ export default function PhotoUpload({
                       flex items-center justify-center transition-all
                       ${selectedPhotos.includes(photo.id)
                         ? 'bg-primary border-primary text-white'
-                        : 'bg-white/90 border-gray-300 hover:border-primary'
+                        : 'bg-card/90 border-border hover:border-primary'
                       }
                     `}
                   >
@@ -290,7 +290,7 @@ export default function PhotoUpload({
                     <select
                       value={photo.category}
                       onChange={(e) => updatePhotoCategory(photo.id, e.target.value as PhotoCategory)}
-                      className="text-xs bg-white/90 rounded px-1.5 py-0.5 border-0 cursor-pointer"
+                      className="text-xs bg-card/90 rounded px-1.5 py-0.5 border-0 cursor-pointer"
                     >
                       {PHOTO_CATEGORIES.map(cat => (
                         <option key={cat.value} value={cat.value}>
@@ -304,7 +304,7 @@ export default function PhotoUpload({
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
                     <button
                       onClick={() => setEditingCaption(photo.id)}
-                      className="p-2 bg-white rounded-full hover:bg-gray-100 transition-colors"
+                      className="p-2 bg-card rounded-full hover:bg-surface-elevated transition-colors"
                       title="Edit caption"
                     >
                       <svg className="w-4 h-4 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -313,7 +313,7 @@ export default function PhotoUpload({
                     </button>
                     <button
                       onClick={() => deletePhoto(photo.id)}
-                      className="p-2 bg-white rounded-full hover:bg-red-100 transition-colors"
+                      className="p-2 bg-card rounded-full hover:bg-danger/20 transition-colors"
                       title="Delete photo"
                     >
                       <svg className="w-4 h-4 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -353,7 +353,7 @@ export default function PhotoUpload({
                       if (e.target === e.currentTarget) setEditingCaption(null);
                     }}
                   >
-                    <div className="bg-white rounded-lg p-4 max-w-md w-full max-h-[90vh] overflow-y-auto">
+                    <div className="bg-card rounded-lg p-4 max-w-md w-full max-h-[90vh] overflow-y-auto">
                       <img
                         src={photo.url}
                         alt="Edit"
